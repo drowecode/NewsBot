@@ -15,5 +15,6 @@ response = client.chat.completions.create(
 )
 
 message = response.choices[0].message.content
-requests.post(os.environ["DISCORD_WEBHOOK"], json={"content": f"📰 **AI & Tech News — {today}**\n\n{message}"})
-print("Posted successfully")
+response_discord = requests.post(os.environ["DISCORD_WEBHOOK"], json={"content": f"📰 **AI & Tech News — {today}**\n\n{message}"})
+print(f"Discord response: {response_discord.status_code}")
+print(f"Discord response body: {response_discord.text}")
